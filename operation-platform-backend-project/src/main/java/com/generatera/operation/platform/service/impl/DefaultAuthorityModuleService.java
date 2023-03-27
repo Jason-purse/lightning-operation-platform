@@ -29,29 +29,11 @@ public class DefaultAuthorityModuleService extends AbstractCrudService<Authority
 
 interface AuthorityOperationQueryConverter extends QueryConverter<AuthorityParam> {
 
+
 }
 
 
 class DefaultAppQueryHandler implements AuthorityOperationQueryConverter, DefaultJpaValidationSupportForQueryAdapter<AuthorityParam> {
-
-    @Nullable
-    public QuerySupport convert(AuthorityParam authorityParam) {
-        return null;
-    }
-
-    @Nullable
-    public QuerySupport convertForAny(@NotNull Object o) {
-        return null;
-    }
-
-    @NotNull
-    public Class<QuerySupport> getTargetClass() {
-        return null;
-    }
-
-    public boolean support(@NotNull Object o) {
-        return false;
-    }
 
     @Nullable
     public QuerySupport selectByIdGroupHandle(@NotNull AuthorityParam authorityParam) {
