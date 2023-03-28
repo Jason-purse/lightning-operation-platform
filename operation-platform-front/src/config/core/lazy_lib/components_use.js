@@ -8,6 +8,7 @@ import {
   Breadcrumb,
   Button,
   Card,
+  FormModel,
   Collapse,
   Checkbox,
   Col,
@@ -51,6 +52,7 @@ import {
   Result
 } from 'ant-design-vue'
 
+Vue.use(FormModel)
 Vue.use(Anchor)
 Vue.use(AutoComplete)
 Vue.use(Alert)

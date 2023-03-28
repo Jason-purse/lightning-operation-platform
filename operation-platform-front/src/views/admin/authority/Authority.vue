@@ -80,14 +80,39 @@
         </div>
       </div>
 
-      <!--      新增app-->
+      <!--      新增app dialog-->
       <div class="add-app">
-        <a-modal centered="true" v-model="appDialogBoxConfig.visible" :title="appDialogBoxConfig.dialogCurrentTitle"
+        <a-modal :centered="true" v-model="appDialogBoxConfig.visible" :title="appDialogBoxConfig.dialogCurrentTitle"
                  @ok="handleAppDataOfDialog">
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
+          <template>
+            <a-form
+              :model="appDialogBoxConfig.data"
+              name="time_related_controls"
+              @submit="submitForm(appDialogBoxConfig.data)"
+            >
+              <a-form-item label="模块名" required>
+                <a-input v-model="appDialogBoxConfig.data.moduleName"/>
+              </a-form-item>
+              <a-form-model-item label="描述">
+                <a-input v-model="appDialogBoxConfig.data.description"/>
+              </a-form-model-item>
+              <a-form-model-item label="所属应用">
+                <a-select v-model="appDialogBoxConfig.data.appId" placeholder="选择所属应用">
+                  <!--                  <a-select-option v-for="" value="shanghai">Zone one</a-select-option>-->
+                </a-select>
+              </a-form-model-item>
+              <a-form-item
+                :wrapper-col="{
+        xs: { span: 24, offset: 0 },
+        sm: { span: 16, offset: 8 },
+      }"
+              >
+                <a-button type="primary" html-type="submit">新增</a-button>
+              </a-form-item>
+            </a-form>
+          </template>
         </a-modal>
+
       </div>
 
     </div>
@@ -98,7 +123,11 @@
 import authorityApi from '@/api/authorityApi'
 import PageView from '@/layouts/PageView.vue'
 import dialog from 'ant-design-vue/lib/vc-dialog/Dialog'
+import dictApi from '@/api/DictApi'
 
+import Vue from 'vue'
+
+const { methods: { getDictInfosOfParentDict } } = dictApi
 export default {
   name: 'Authority',
   computed: {
@@ -116,7 +145,11 @@ export default {
         dialogCurrentTitle: '', // 弹窗当前标题
         dialogTitle: ['新增app', '更新app'],
         dialogIndex: 0, // dialog title index 设置为 对应的标题 index
-        data: {} // 弹窗数据
+        data: { // 弹窗数据
+          moduleName: '',
+          description: '',
+          appId: ''
+        }
       },
       columns: [
         {
@@ -158,12 +191,20 @@ export default {
       ]
     }
   },
+  mounted () {
+    // eslint-disable-next-line no-console
+    console.log('请求人')
+    getDictInfosOfParentDict()
+  },
   created () {
-    // 开始调用数据
-    this.submitForm()
+    console.log('触发')
   },
   methods: {
     ...authorityApi.methods,
+    getDataFunc (params) {
+      console.log('请求')
+      return this.getListByModuleNameAndDesc(params.moduleName, params.description)
+    },
     // Only show error after a field is touched.
     userNameError () {
       const { getFieldError, isFieldTouched } = this.form
@@ -196,6 +237,8 @@ export default {
     appDialogTrigger (_ = '', index = 0) {
       this.appDialogBoxConfig.dialogCurrentTitle = this.appDialogBoxConfig.dialogTitle[index]
       this.appDialogBoxConfig.visible = true
+      // 清理 data
+      this.appDialogBoxConfig.data = {}
     }
   }
 

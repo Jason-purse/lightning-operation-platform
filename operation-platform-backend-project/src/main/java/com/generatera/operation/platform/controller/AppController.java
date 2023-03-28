@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @Description app controller
  */
 @RestController
-@RequestMapping("/api/admin/app/v1")
+@RequestMapping("/api/admin/v1/app")
 public class AppController extends AbstractGenericController<AppParam, AppService> {
 
     @Autowired

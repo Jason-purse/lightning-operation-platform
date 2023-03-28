@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/admin/authority/v1")
+@RequestMapping("/api/admin/v1/authority/")
 public class AuthorityController extends AbstractGenericController<AuthorityParam, AuthorityModuleService> {
 
     public AuthorityController(@NotNull AuthorityModuleService service) {

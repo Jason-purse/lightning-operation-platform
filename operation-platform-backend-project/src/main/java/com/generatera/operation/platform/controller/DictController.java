@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/admin/dict/v1")
+@RequestMapping("/api/admin/v1/dict")
 public class DictController extends AbstractGenericController<DictParam, DictService> {
     public DictController(@NotNull DictService service) {
         super(service);

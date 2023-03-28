@@ -21,13 +21,16 @@ public class DictEntity extends JpaBaseEntity<String> {
     private String id;
 
 
+    @Column(name = "item_type")
     private String itemType;
 
+    @Column(name = "item_value")
     private String itemValue;
 
     /**
      * 直接根据唯一标识符进行数据查询,简单高效 ..
      */
+    @Column(name = "fid_item_type")
     private String fidItemType;
 
 }

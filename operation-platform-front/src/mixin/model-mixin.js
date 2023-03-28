@@ -41,9 +41,12 @@ export default {
      */
     submitForm (_ = '', formName = 'form') {
       formName = formName || 'form'
-
+      let formObj = formName
+      if ((typeof formName) === 'string') {
+        formObj = this[formName]
+      }
       // 成功做事情 ..
-      this.getDataFunc && this.getDataFunc(this.$form).then(({ data }) => {
+      this.getDataFunc && this.getDataFunc(formObj.getFieldsValue()).then(({ data }) => {
         this.tableData = data
       })
     }
