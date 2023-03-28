@@ -2,6 +2,7 @@ package com.generatera.operation.platform.controller;
 
 import com.generatera.operation.platform.model.params.authority.AuthorityParam;
 import com.generatera.operation.platform.service.AuthorityModuleService;
+import com.jianyue.lightning.boot.starter.generic.crud.service.support.controller.AbstractGenericController;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

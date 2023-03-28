@@ -8,8 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public class BaseVo {
+public abstract class BaseVo {
 
     private String createTimeStr;
 

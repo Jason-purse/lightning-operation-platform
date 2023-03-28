@@ -49,5 +49,4 @@ public class AppEntity extends JpaBaseEntity<String> {
     @Column(name = "url")
     private String url;
 
-
 }
